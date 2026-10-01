@@ -1,4 +1,5 @@
 .top-tools .appearance-toggle{width:32px;height:32px;display:grid;place-items:center;padding:0;border:1px solid #ffffff40;border-radius:50%;background:#ffffff12;color:#edf2e8;cursor:pointer}
+.app:not(.cv-global-theme) .brand-symbol{width:68px;height:16px;flex:0 0 auto;color:#f3f4ec}
 .top-tools .appearance-toggle:hover{background:#ffffff25}
 .app[data-appearance='night']{background:#111812;color:#e6ece1}
 .app[data-appearance='night'] .topbar{background:#0a100c;color:#f0f3e9}
@@ -99,6 +100,6 @@
 .cv-global-theme[data-appearance='night'] .community-card,.cv-global-theme[data-appearance='night'] .local-guardrail{background:#101811}
 .brand small.product-name{display:block;max-width:205px;color:#adbaad;font:500 8px/1.25 'DM Sans',sans-serif;letter-spacing:0;white-space:normal}
 .cv-global-theme .brand small.product-name{color:#c1c9b9}
-@media(max-width:620px){.brand small.product-name{max-width:128px;font-size:7px}}
+@media(max-width:620px){.brand small.product-name{max-width:128px;font-size:7px}.app:not(.cv-global-theme) .brand-symbol{width:52px;height:12px}}
 @media(prefers-reduced-motion:reduce){.app *{transition-duration:.01ms!important}}
 @media print{.appearance-toggle{display:none!important}}
