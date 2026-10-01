@@ -1,0 +1,119 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap');
+
+.cv-global-theme{--ink:#20251d;--forest:#17251d;--line:#d8ddd0;--lime:#d0f063;min-height:100vh;color:var(--ink);background:#e8e9df;font-family:'DM Sans',sans-serif}
+.cv-global-theme .topbar{background:#111711;color:#f7f5eb}
+.cv-global-theme .brand-symbol{width:68px;height:16px;color:#d0f063}
+.cv-global-theme .brand>i{background:#ffffff3b}
+.cv-global-theme .brand>span small{color:#c1c9b9}
+.cv-global-theme .deck-name{color:#c4cbbd}
+.cv-global-theme .deck-name>i{color:#d0f063}
+.cv-global-theme .deck-name>b{color:#f5f3e9}
+.cv-global-theme .top-tools>span{color:#d3d9cb}
+.cv-global-theme .top-tools>span>i{background:#d0f063;box-shadow:0 0 0 3px #d0f06324}
+.cv-global-theme .top-tools button{border-color:#ffffff40;border-radius:0;background:#d0f063;color:#192019}
+.cv-global-theme .workspace{max-width:1500px}
+.cv-global-theme .slide-meta{color:#717a6c}
+.cv-global-theme .canvas{border:0;border-radius:0;background:#f3f2e9;box-shadow:0 12px 34px #20291c1a}
+.cv-global-theme .slide{font-family:'DM Sans',sans-serif}
+.cv-global-theme .slide h1,.cv-global-theme .slide h2,.cv-global-theme .journey-node h2{font-family:'DM Serif Display',Georgia,serif;font-weight:400;letter-spacing:0}
+.cv-global-theme .context-copy h1,.cv-global-theme .heading-row h1{color:#20251d}
+.cv-global-theme .context-copy h1 em,.cv-global-theme .heading-row h1 em{color:#718a3c}
+.cv-global-theme .eyebrow{color:#66735d}
+.cv-global-theme .eyebrow>i{background:#839d4b}
+.cv-global-theme .product-lockup{border-color:#d8ddd0}
+.cv-global-theme .product-lockup>b{border-radius:0;background:#d0f063;color:#263020}
+.cv-global-theme .product-lockup span strong{color:#293325}
+.cv-global-theme .product-subtitle,.cv-global-theme .product-subtitle strong{color:#5b6658}
+.cv-global-theme .tension{border:0;background:#d0f063}
+.cv-global-theme .tension span,.cv-global-theme .tension p{color:#273020}
+.cv-global-theme .assumptions>div{color:#6e8840}
+.cv-global-theme .assumptions b{color:#384434}
+.cv-global-theme .assumptions small{color:#727a6c}
+.cv-global-theme .context-image{background:#17251d}
+.cv-global-theme .image-wash{background:linear-gradient(180deg,#10181138,transparent 42%,#111711c9),linear-gradient(90deg,#11171126,transparent)}
+.cv-global-theme .image-brand{gap:7px}
+.cv-global-theme .image-brand-symbol{width:47px;height:11px;color:#d0f063}
+.cv-global-theme .image-brand>span{color:#f6f5ed;font:700 8px/1.3 'DM Sans',sans-serif;letter-spacing:.07em}
+.cv-global-theme .handoff{border-color:#ffffff2c;border-radius:0;background:#111711c4}
+.cv-global-theme .handoff>svg:first-child,.cv-global-theme .handoff>svg:last-child{color:#d0f063}
+.cv-global-theme .slide-count{color:#737c70}
+.cv-global-theme .arrow{border-color:#cbd2c4;border-radius:0;background:#f8f7ef;color:#435537}
+.cv-global-theme .arrow:hover:not(:disabled){border-color:#8d9d6f;background:#d0f063}
+.cv-global-theme .tabs button.selected{border-radius:0;background:#d0f063}
+.cv-global-theme .tabs button.selected small,.cv-global-theme .tabs button.selected b{color:#263020}
+.cv-global-theme .separator{background:#cbd2c4}
+.cv-global-theme .guide-toggle{border-radius:0;color:#3e5940}
+.cv-global-theme .guide-toggle.active,.cv-global-theme .guide-toggle:hover{border-color:#cbd4b8;background:#d0f063;color:#273020}
+.cv-global-theme .key-hint{color:#747c70}
+.cv-global-theme .key-hint kbd{border-color:#cbd2c4;border-radius:0;background:#f7f6ee;color:#414b3d}
+.cv-global-theme .page-footer{color:#6e7769}
+.cv-global-theme .architecture,.cv-global-theme .value{background:#f3f2e9}
+.cv-global-theme .audience{border-color:#d7dccf;border-radius:0;color:#647d3b}
+.cv-global-theme .audience span{color:#737b6c}
+.cv-global-theme .audience b{color:#46563a}
+.cv-global-theme .objectives{border:0;border-left:2px solid #819a49;border-radius:0;background:#e5e8da;color:#586150}
+.cv-global-theme .objectives>svg,.cv-global-theme .objectives b{color:#526c31}
+.cv-global-theme .objectives>strong{color:#697d3f}
+.cv-global-theme .journey-node{border-color:#d9ded1;border-radius:0;background:#faf9f2}
+.cv-global-theme .journey-node h2{color:#293326}
+.cv-global-theme .journey-node p{color:#727a6c}
+.cv-global-theme .journey-node.mint>div{color:#77944a}
+.cv-global-theme .journey-node.coral>div{color:#aa7558}
+.cv-global-theme .journey-node.blue>div{color:#63848a}
+.cv-global-theme .journey-node label{border-color:#e3d7c6;border-radius:0;background:#f3eadc;color:#85633f}
+.cv-global-theme .flow{color:#778561}
+.cv-global-theme .flow small{color:#7d8478}
+.cv-global-theme .ai-band{border-radius:0;background:#17251d;color:#d0f063}
+.cv-global-theme .ai-band>div+div{border-color:#ffffff35}
+.cv-global-theme .ai-band b{color:#f5f3e8}
+.cv-global-theme .ai-band small{color:#c0c8b8}
+.cv-global-theme .ingestion{color:#697266}
+.cv-global-theme .ingestion>b{color:#708541}
+.cv-global-theme .ingestion>i{background:#d8ddd0}
+.cv-global-theme .priority{border-color:#d0f063;border-radius:0;background:#d0f063;color:#273020}
+.cv-global-theme .priority small,.cv-global-theme .priority b{color:#273020}
+.cv-global-theme .metric{border-color:#d9ded1;border-radius:0;background:#faf9f2}
+.cv-global-theme .metric>small{color:#747c6d}
+.cv-global-theme .metric>strong,.cv-global-theme .metric:not(.primary):not(.exclusions)>strong{color:#293626}
+.cv-global-theme .metric>strong svg{color:#647d3b}
+.cv-global-theme .metric:not(.primary):not(.exclusions)>strong svg{color:#578183}
+.cv-global-theme .metric p,.cv-global-theme .metric label{color:#6d7568}
+.cv-global-theme .metric.primary{border:0;background:#d0f063}
+.cv-global-theme .metric.primary>strong,.cv-global-theme .metric.primary>strong svg{color:#24301d}
+.cv-global-theme .exclusions{background:#e8e9df}
+.cv-global-theme .exclusions li{color:#4e5a4a}
+.cv-global-theme .exclusions li svg{color:#668142}
+.cv-global-theme .governance>article{border-color:#d8ddd0}
+.cv-global-theme .governance>article>i{border-radius:0;background:#e1e8d1;color:#58763b}
+.cv-global-theme .governance>article>i.oversight{background:#efe2d5;color:#96684c}
+.cv-global-theme .governance>article span>small{color:#66715f}
+.cv-global-theme .governance p{color:#596354}
+.cv-global-theme .governance>aside{border:0;border-left:2px solid #b57b56;border-radius:0;background:#eee4d7}
+.cv-global-theme .governance>aside small{color:#875f43}
+.cv-global-theme .governance>aside b{color:#483a30}
+.cv-global-theme .closing{color:#627150}
+.cv-global-theme .closing>i{background:#d7dccf}
+.cv-global-theme .closing>svg{color:#758f42}
+.cv-global-theme .guide{border-color:#d5dacd;border-radius:0;background:#f8f7ef;box-shadow:0 12px 30px #20291c18}
+.cv-global-theme .guide>header{background:#17251d;color:#f7f5eb}
+.cv-global-theme .guide>header .eyebrow{color:#d0dfb0}
+.cv-global-theme .guide>header .eyebrow>i{background:#d0f063}
+.cv-global-theme .guide h2{color:#f7f5eb;font-family:'DM Serif Display',Georgia,serif;font-weight:400}
+.cv-global-theme .close{border-color:#ffffff38;border-radius:0;background:transparent;color:#f5f3e8}
+.cv-global-theme .guide-tabs{border-color:#d9ded1}
+.cv-global-theme .guide-tabs button.chosen{color:#4f6934}
+.cv-global-theme .guide-tabs button.chosen:after{background:#91ad53}
+.cv-global-theme .script>label{border-radius:0;background:#e4e9d8;color:#526a35}
+.cv-global-theme .script>p{color:#4d5949}
+.cv-global-theme .script>article{border-color:#d9ded1;border-radius:0;background:#eeefe5}
+.cv-global-theme .script>article small{color:#65734f}
+.cv-global-theme .script h3,.cv-global-theme .qa-list h3{color:#34412f}
+.cv-global-theme .script>article p,.cv-global-theme .qa-list p{color:#606a5b}
+.cv-global-theme .script>aside{color:#637052}
+.cv-global-theme .script>aside svg{color:#799248}
+.cv-global-theme .qa-list article{border-color:#d9ded1}
+.cv-global-theme .qa-list article>small{color:#7d886f}
+.cv-global-theme .guide>footer{border-color:#d9ded1;color:#697564}
+.cv-global-theme .guide>footer button{color:#526a38}
+@media(max-width:760px){.cv-global-theme .guide{border-radius:0}.cv-global-theme .canvas{box-shadow:0 8px 24px #20291c15}}
+@media print{.cv-global-theme{background:#fff!important}.cv-global-theme .canvas{box-shadow:none}}
