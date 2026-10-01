@@ -58,11 +58,11 @@ function LocalConnectionSlide() {
   return <div className="slide journey-slide local-slide">
     <header className="journey-title"><div><span className="eyebrow"><i/> 03 / LOCAL CONNECTION</span><h1>From online interest<br/><em>to a real welcome.</em></h1></div><p>Clear next steps, a consent-led introduction and a human being ready to respond.</p></header>
     <div className="local-flow">
-      <article className="local-step"><span className="local-step-number">01</span><div className="local-step-icon"><MapPin size={18}/></div><small>LOCALIZE</small><h2>Match the context.</h2><p>Use chosen language, approximate location, interests and accessibility preferences.</p><div className="local-tags"><span>Language</span><span>Distance</span><span>Interests</span></div></article>
+      <article className="local-step"><span className="local-step-number">01</span><div className="local-step-icon"><MapPin size={18}/></div><small>LOCALIZE</small><h2>Match the context.</h2><p>Use chosen language, approximate location, interests and accessibility preferences.</p><InterestCommunityMatch/></article>
       <div className="local-arrow"><ArrowRight size={18}/></div>
-      <article className="local-step match-step"><span className="local-step-number">02</span><div className="local-step-icon"><Compass size={18}/></div><small>SUGGEST, DON’T ASSIGN</small><h2>Let them choose.</h2><p>Show nearby partner churches with a language and interest fit, plus directions and visit details.</p><div className="church-match"><span><BuildingChurchIcon/><i/></span><div><b>Nearby partner community</b><small>2.4 km · English · family group</small></div><Check size={14}/></div></article>
+      <article className="local-step match-step"><span className="local-step-number">02</span><div className="local-step-icon"><Compass size={18}/></div><small>SUGGEST, DON’T ASSIGN</small><h2>Let them choose.</h2><p>Show nearby partner churches with a language and interest fit, plus directions and visit details.</p><NearbyChurchMap/><div className="church-match"><span><BuildingChurchIcon/><i/></span><div><b>Nearby partner community</b><small>2.4 km · English · family group</small></div><Check size={14}/></div></article>
       <div className="local-arrow"><ArrowRight size={18}/></div>
-      <article className="local-step handoff-step"><span className="local-step-number">03</span><div className="local-step-icon"><HandHeartIcon/></div><small>OPT-IN HANDOFF</small><h2>A person follows up.</h2><p>With permission, send the minimum details to a church partner or welcome team.</p><div className="welcome-message"><MessageCircle size={13}/><span>Welcome team reaches out by the person’s preferred channel.</span></div></article>
+      <article className="local-step handoff-step"><span className="local-step-number">03</span><div className="local-step-icon"><HandHeartIcon/></div><small>OPT-IN HANDOFF</small><h2>A person follows up.</h2><p>With permission, send the minimum details to a church partner or welcome team.</p><div className="followup-draft" aria-label="Example WhatsApp follow-up message being drafted"><div className="draft-header"><span><MessageCircle size={10}/> WHATSAPP DRAFT</span><small>OPT-IN</small></div><div className="draft-bubble" aria-label="Hi there, thanks for reaching out. Would directions or details about the group help?"><span style={{animationDelay:'0ms'}}>Hi there,</span><span style={{animationDelay:'300ms'}}>thanks for reaching out.</span><span style={{animationDelay:'600ms'}}>Would directions or</span><span style={{animationDelay:'900ms'}}>group details help?</span></div><div className="draft-footer"><span><i/> Partner review before sending</span><Send size={11}/></div></div><div className="welcome-message"><MessageCircle size={13}/><span>Replies through the person’s preferred channel.</span></div></article>
     </div>
     <div className="local-bottom"><div className="local-measures"><span>6—12 MONTH SIGNALS</span><b><strong>25%</strong> faster handoff</b><i/><b><strong>15%</strong> more multi-touch engagement</b></div><div className="local-guardrail"><ShieldCheck size={16}/><span><b>CONSENT FIRST. DATA STAYS LOCAL.</b><small>No central seeker profile · no automated theological counselling</small></span></div></div>
   </div>
@@ -70,6 +70,45 @@ function LocalConnectionSlide() {
 
 function BuildingChurchIcon() {
   return <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21h18M5 21V10l7-5 7 5v11M9 21v-6h6v6M12 2v5M9.5 4.5h5" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/></svg>
+}
+
+function InterestCommunityMatch() {
+  return <div className="interest-linker" role="img" aria-label="Family, Bible study and Devotions interests link to a nearby Family and faith community">
+    <small className="interest-linker-title">INTERESTS FIND COMMUNITY</small>
+    <div className="interest-link-flow">
+      <div className="interest-picks"><span><Heart size={10}/> Family</span><span><BookOpen size={10}/> Bible study</span><span><Sparkles size={10}/> Devotions</span></div>
+      <svg className="interest-lines" viewBox="0 0 56 68" aria-hidden="true" focusable="false">
+        <path className="interest-path interest-path-one" d="M1 9C23 9 27 34 53 34"/>
+        <path className="interest-path interest-path-two" d="M1 34H53"/>
+        <path className="interest-path interest-path-three" d="M1 59C23 59 27 34 53 34"/>
+        <circle cx="53" cy="34" r="3"/>
+      </svg>
+      <div className="interest-community"><UsersRound size={15}/><span><small>NEARBY GROUP</small><b>Family & faith</b></span></div>
+    </div>
+  </div>
+}
+
+function NearbyChurchMap() {
+  return <div className="nearby-map" role="img" aria-label="Animated map zoom showing three nearby churches around the selected location">
+    <div className="map-caption"><span><MapPin size={10}/> NEAR YOUR LOCATION</span><b>2.4 KM</b></div>
+    <svg viewBox="0 0 300 118" aria-hidden="true" focusable="false">
+      <rect className="map-ground" width="300" height="118"/>
+      <g className="map-zoom-scene">
+        <path className="map-park" d="M-10 12 47 2l18 25-20 24-49 2zm214 73 45-16 25 24-12 31-58 4z"/>
+        <path className="map-water" d="M70-12c-6 22 18 24 13 42S62 58 74 77s24 19 17 49"/>
+        <g className="map-streets">
+          <path d="M-10 20 310 93M-10 104 294 7M20-10l45 140M145-12l-24 144M228-10l45 138M-6 57l311-14M5 84l295-44"/>
+          <path className="map-main-road" d="M-12 91c58-49 102 18 161-12s91-49 163-34"/>
+        </g>
+        <path className="map-route" d="M148 63c-23-3-40-7-56-23M151 62c24-18 43-25 70-23M153 65c27 9 44 18 69 24"/>
+        <g className="map-user-pin"><circle className="map-pulse" cx="150" cy="63" r="8"/><circle className="map-user-dot" cx="150" cy="63" r="4"/></g>
+        <g className="nearby-church-pin church-pin-one" transform="translate(86 39)"><circle r="8"/><path d="M0-4v8M-3 0h6"/></g>
+        <g className="nearby-church-pin church-pin-two" transform="translate(224 39)"><circle r="8"/><path d="M0-4v8M-3 0h6"/></g>
+        <g className="nearby-church-pin church-pin-three" transform="translate(224 89)"><circle r="8"/><path d="M0-4v8M-3 0h6"/></g>
+      </g>
+    </svg>
+    <div className="map-results"><i/> 3 PARTNER CHURCHES NEARBY</div>
+  </div>
 }
 
 function HandHeartIcon() {

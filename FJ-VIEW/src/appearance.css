@@ -46,9 +46,35 @@
 .app[data-appearance='night'] .local-step-icon,.app[data-appearance='night'] .local-tags span{background:#354632;color:#c9e49c}
 .app[data-appearance='night'] .match-step{border-color:#60744a;background:#293725}
 .app[data-appearance='night'] .match-step .local-step-icon{background:#c7e682;color:#22301f}
+.app[data-appearance='night'] .interest-linker-title{color:#bbcba6}
+.app[data-appearance='night'] .interest-picks>span{border-color:#455443;background:#253126;color:#dce7d3}
+.app[data-appearance='night'] .interest-picks>span svg{color:#c7e39c}
+.app[data-appearance='night'] .interest-lines>path{stroke:#c7e39c}
+.app[data-appearance='night'] .interest-lines>circle{stroke:#263528;fill:#d0f063}
+.app[data-appearance='night'] .interest-community{border-color:#506043;background:#35442f;color:#d0f063}
+.app[data-appearance='night'] .interest-community small{color:#c1d0ad}
+.app[data-appearance='night'] .interest-community b{color:#e3edd7}
+.app[data-appearance='night'] .nearby-map{border-color:#465641;background:#29372a}
+.app[data-appearance='night'] .map-ground{fill:#29372a}
+.app[data-appearance='night'] .map-park{fill:#354a32}
+.app[data-appearance='night'] .map-water{stroke:#34564e}
+.app[data-appearance='night'] .map-streets path{stroke:#53604d}
+.app[data-appearance='night'] .map-streets .map-main-road{stroke:#758066}
+.app[data-appearance='night'] .map-route{stroke:#c7e682}
+.app[data-appearance='night'] .nearby-church-pin{fill:#263329;stroke:#d0f063}
+.app[data-appearance='night'] .nearby-church-pin path{stroke:#d0f063}
+.app[data-appearance='night'] .map-caption,.app[data-appearance='night'] .map-results{border-color:#59634f;background:#202c21e8;color:#d7e7bd}
+.app[data-appearance='night'] .map-caption>b,.app[data-appearance='night'] .map-caption>span svg{color:#d0f063}
+.app[data-appearance='night'] .map-results>i{background:#d0f063}
+.app[data-appearance='night'] .map-user-dot{fill:#8dc0df}
 .app[data-appearance='night'] .church-match>span{background:#344431;color:#d0e9a5}
 .app[data-appearance='night'] .church-match>svg{color:#c7e682}
 .app[data-appearance='night'] .handoff-step .local-step-icon{background:#314631;color:#c7e0a4}
+.app[data-appearance='night'] .followup-draft{border-color:#465642;background:#253126}
+.app[data-appearance='night'] .draft-header>span,.app[data-appearance='night'] .draft-footer>svg{color:#c7e39c}
+.app[data-appearance='night'] .draft-header>small,.app[data-appearance='night'] .draft-footer>span{color:#b1c1a8}
+.app[data-appearance='night'] .draft-bubble{background:#354533}
+.app[data-appearance='night'] .draft-bubble>span{color:#e1ead9}
 .app[data-appearance='night'] .welcome-message{background:#314133;color:#d5e6c9}
 .app[data-appearance='night'] .local-measures{background:#222e23}
 .app[data-appearance='night'] .local-measures>span,.app[data-appearance='night'] .local-measures>b{color:#b6c2ae}
