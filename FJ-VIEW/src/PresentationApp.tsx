@@ -91,7 +91,7 @@ function InterestCommunityMatch() {
 function NearbyChurchMap() {
   return <div className="nearby-map" role="img" aria-label="Animated map zoom showing three nearby churches around the selected location">
     <div className="map-caption"><span><MapPin size={10}/> NEAR YOUR LOCATION</span><b>2.4 KM</b></div>
-    <svg viewBox="0 0 300 118" aria-hidden="true" focusable="false">
+    <svg viewBox="0 0 300 118" preserveAspectRatio="none" aria-hidden="true" focusable="false">
       <rect className="map-ground" width="300" height="118"/>
       <g className="map-zoom-scene">
         <path className="map-park" d="M-10 12 47 2l18 25-20 24-49 2zm214 73 45-16 25 24-12 31-58 4z"/>
