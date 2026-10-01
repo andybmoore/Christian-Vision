@@ -97,5 +97,8 @@
 .cv-global-theme[data-appearance='night'] .match-step{border-color:#677347;background:#2a3323}
 .cv-global-theme[data-appearance='night'] .local-measures{background:#252c23}
 .cv-global-theme[data-appearance='night'] .community-card,.cv-global-theme[data-appearance='night'] .local-guardrail{background:#101811}
+.brand small.product-name{display:block;max-width:205px;color:#adbaad;font:500 8px/1.25 'DM Sans',sans-serif;letter-spacing:0;white-space:normal}
+.cv-global-theme .brand small.product-name{color:#c1c9b9}
+@media(max-width:620px){.brand small.product-name{max-width:128px;font-size:7px}}
 @media(prefers-reduced-motion:reduce){.app *{transition-duration:.01ms!important}}
 @media print{.appearance-toggle{display:none!important}}
