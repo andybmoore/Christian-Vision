@@ -105,7 +105,7 @@
 .match-step{border-color:#d7e1ca;background:#f4f6ed}
 .match-step .local-step-icon{background:#dce9c7;color:#597842}
 .nearby-map{position:relative;width:100%;height:72px;flex:0 0 72px;margin:8px 0 7px;overflow:hidden;border:1px solid #dce4d5;border-radius:4px;background:#e4eadb}
-.match-step .nearby-map{height:auto;min-height:160px;flex:1 1 0;margin:12px 0}
+.match-step .nearby-map{height:180px;flex:0 0 180px;margin:auto 0}
 .nearby-map>svg{position:absolute;inset:0;width:100%;height:100%}
 .map-ground{fill:#e4eadb}
 .map-park{fill:#d0ddc1}
