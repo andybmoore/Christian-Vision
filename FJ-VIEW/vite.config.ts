@@ -9,6 +9,7 @@ export default defineConfig({
       input: {
         main: 'index.html',
         cvGlobal: 'cv-global.html',
+        film: 'fj-n2n-film.html',
       },
     },
   },

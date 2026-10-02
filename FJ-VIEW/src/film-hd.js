@@ -1,0 +1,68 @@
+import './film.css'
+
+const canvas = document.querySelector('#journey-film')
+const ctx = canvas.getContext('2d')
+const render = document.querySelector('#render-film')
+const replay = document.querySelector('#replay-film')
+const download = document.querySelector('#download-film')
+const progress = document.querySelector('#film-progress')
+const status = document.querySelector('#film-status')
+const W = 1920, H = 1080, DURATION = 9000, STEP = 1800
+const phone = { x: 815, y: 54, w: 490, h: 940 }
+const screen = { x: 827, y: 66, w: 466, h: 916 }
+let started = performance.now(), recording = false, recorder, chunks = [], lastUrl = ''
+canvas.width = W
+canvas.height = H
+
+function rounded(x,y,w,h,r,fill,stroke) { ctx.beginPath(); ctx.roundRect(x,y,w,h,r); ctx.fillStyle=fill; ctx.fill(); if (stroke) { ctx.strokeStyle=stroke; ctx.lineWidth=1; ctx.stroke() } }
+function text(value,x,y,size,color,weight=400,font='DM Sans') { ctx.fillStyle=color; ctx.font=`${weight} ${size}px "${font}",sans-serif`; ctx.fillText(value,x,y) }
+function line(x1,y1,x2,y2,color,width=1) { ctx.beginPath(); ctx.moveTo(x1,y1); ctx.lineTo(x2,y2); ctx.strokeStyle=color; ctx.lineWidth=width; ctx.stroke() }
+function ui(value,x,y,size,color='#29392d',weight=500) { text(value,screen.x+x,screen.y+y,size,color,weight) }
+function card(x,y,w,h,r,fill,border='#dfe5da') { rounded(screen.x+x,screen.y+y,w,h,r,fill,border) }
+
+function background(scene,phase,elapsed) {
+  ctx.fillStyle='#101711'; ctx.fillRect(0,0,W,H)
+  const glow=ctx.createRadialGradient(1220,480,20,1220,480,900); glow.addColorStop(0,'#35472e'); glow.addColorStop(1,'#101711'); ctx.fillStyle=glow; ctx.fillRect(0,0,W,H)
+  text('FJ-N2N',80,76,18,'#f2f2e9',700); text('FAITH JOURNEY / NETTONEIGHBOR',80,101,9,'#bdc9b8',500,'DM Mono'); text('CHRISTIAN VISION',1625,88,10,'#c5d0bf',500,'DM Mono'); line(75,118,1845,118,'#3a4938')
+  const titles=[['A first step,','on their terms.'],['A hub shaped','around them.'],['One tap can','open a door.'],['Interests grow','into community.'],['Local interest,','human welcome.']]
+  const captions=['Choose language, interests, and approximate area.','Articles, audio, podcasts, and video in one place.','Share a resource with someone you trust.','Join a group before the first visit.','Choose a nearby church. Meet a real person.']
+  text(`0${scene+1} / ${['DISCOVER','PERSONALIZE','SHARE','COMMUNITY','LOCAL WELCOME'][scene]}`,82,217,10,'#d0f063',500,'DM Mono')
+  const fade=Math.min(1,phase*3); ctx.save(); ctx.globalAlpha=fade; text(titles[scene][0],80,340-(1-fade)*10,48,'#f2f2e9',500,'DM Serif Display'); text(titles[scene][1],80,397-(1-fade)*10,48,'#d0f063',500,'DM Serif Display'); text(captions[scene],84,444,13,'#b7c1b1'); ctx.restore()
+  rounded(75,1022,1770,4,2,'#394638'); rounded(75,1022,Math.max(12,1770*elapsed/DURATION),4,2,'#d0f063'); text('PERSONALIZE  ->  DISCOVER  ->  SHARE  ->  BELONG  ->  CONNECT',75,1050,8,'#aebbaa',400,'DM Mono')
+}
+function palmBehind() {
+  const skin=ctx.createLinearGradient(1220,280,1580,900); skin.addColorStop(0,'#e2ae8d'); skin.addColorStop(.5,'#bd805f'); skin.addColorStop(1,'#8f5947')
+  ctx.save(); ctx.shadowColor='#0009'; ctx.shadowBlur=28; ctx.shadowOffsetX=14; ctx.shadowOffsetY=18; ctx.fillStyle=skin; ctx.beginPath(); ctx.moveTo(1260,440); ctx.bezierCurveTo(1240,310,1300,270,1370,265); ctx.bezierCurveTo(1450,255,1510,330,1535,410); ctx.bezierCurveTo(1610,520,1620,650,1590,790); ctx.bezierCurveTo(1565,910,1460,960,1360,920); ctx.bezierCurveTo(1280,880,1240,740,1230,600); ctx.bezierCurveTo(1222,530,1230,470,1260,440); ctx.closePath(); ctx.fill(); ctx.restore()
+  const finger=ctx.createLinearGradient(1270,260,1430,380); finger.addColorStop(0,'#e8b896'); finger.addColorStop(1,'#ae7158')
+  ;[{x:1265,y:300,w:112,h:180},{x:1300,y:390,w:120,h:180},{x:1325,y:490,w:118,h:170}].forEach(f=>{ctx.fillStyle=finger;ctx.beginPath();ctx.roundRect(f.x,f.y,f.w,f.h,f.h/2);ctx.fill()})
+}
+function phoneFrame(phase) {
+  const metal=ctx.createLinearGradient(phone.x,0,phone.x+phone.w,0); metal.addColorStop(0,'#5b6665'); metal.addColorStop(.2,'#e0e3dc'); metal.addColorStop(.5,'#727d7b'); metal.addColorStop(.82,'#d7dbd3'); metal.addColorStop(1,'#515d5c')
+  ctx.save(); ctx.translate(1060,540); const z=1+Math.sin(phase*Math.PI)*.004; ctx.scale(z,z); ctx.translate(-1060,-540); ctx.shadowColor='#000b'; ctx.shadowBlur=40; ctx.shadowOffsetX=18; ctx.shadowOffsetY=20; rounded(phone.x,phone.y,phone.w,phone.h,62,metal,'#adb5ad'); ctx.restore()
+  rounded(phone.x+7,phone.y+7,phone.w-14,phone.h-14,57,'#050706'); rounded(screen.x,screen.y,screen.w,screen.h,48,'#f3f2e9')
+  rounded(phone.x-6,phone.y+175,5,72,2,'#919a97'); rounded(phone.x-6,phone.y+270,5,78,2,'#919a97'); rounded(phone.x+phone.w+1,phone.y+250,5,105,2,'#919a97'); rounded(phone.x+phone.w/2-57,phone.y+16,114,27,14,'#040605')
+}
+function phoneHeader(scene) {
+  text('9:41',screen.x+27,screen.y+36,12,'#1f2c20',700); text('FJ-N2N',screen.x+27,screen.y+73,16,'#344934',700); text('YOUR JOURNEY',screen.x+27,screen.y+91,7,'#7c8878',500,'DM Mono')
+  rounded(screen.x+screen.w-49,screen.y+56,22,22,11,'#e3eadd'); text('A',screen.x+screen.w-41,screen.y+72,10,'#556c48',700); rounded(screen.x+27,screen.y+103,screen.w-54,2,1,'#dce4d7'); if(scene>0) rounded(screen.x+27,screen.y+103,(screen.w-54)*scene/4,2,1,'#77915f')
+}
+function uiField(y,title,value) { card(28,y,410,47,8,'#fff'); ui(title,41,y+16,6,'#819079',500,'DM Mono'); ui(value,41,y+35,11,'#344634',600) }
+function feature(y,title,subtitle,color) { const x=screen.x+28,t=screen.y+y,g=ctx.createLinearGradient(x,t,x+410,t+190); g.addColorStop(0,color); g.addColorStop(1,'#344d3a'); rounded(x,t,410,190,11,g); text(title,x+16,t+144,7,'#e4edda',500,'DM Mono'); text(subtitle,x+16,t+170,14,'#fff',600,'DM Serif Display') }
+function row(y,type,title,detail,color) { card(28,y,410,74,9,'#fff'); card(37,y+10,39,39,9,color); ui(type[0],48,y+36,15,'#fff',700); ui(type,86,y+26,7,'#788471',500,'DM Mono'); ui(title,86,y+44,10,'#364738',600); ui(detail,86,y+61,7,'#798473') }
+function drawScreen(scene,phase) {
+  ctx.save(); ctx.beginPath(); ctx.roundRect(screen.x,screen.y,screen.w,screen.h,48); ctx.clip(); ctx.fillStyle='#f3f2e9'; ctx.fillRect(screen.x,screen.y,screen.w,screen.h); phoneHeader(scene)
+  if(scene===0){ui('Make this space',28,155,23,'#263629',600);ui('yours.',28,182,23,'#66834d',600);ui('Change these choices any time.',28,205,9,'#738070');uiField(228,'LANGUAGE','English');uiField(285,'APPROXIMATE AREA','Leicester area');ui('WHAT INTERESTS YOU?',28,366,8,'#74816d',600,'DM Mono');['Family','Bible study','Daily encouragement','Faith foundations','Devotions','Budgeting'].forEach((v,i)=>{const x=28+(i%2)*195,y=382+Math.floor(i/2)*55-phase*9;rounded(screen.x+x,screen.y+y,176,38,19,i<3?'#e4efda':'#fff',i<3?'#8da47a':'#dfe5da');ui(v,x+13,y+24,8,'#435441')})}
+  if(scene===1){ui('A thoughtful place',28,155,20,'#263629',600);ui('to begin today.',28,180,20,'#66834d',600);feature(205-phase*8,'FAITH IN FAMILY LIFE','Small steps. Lasting hope.','#71895d');ui('PICK UP WHERE YOU LEFT OFF',28,411-phase*5,7,'#788675',600,'DM Mono');row(423-phase*5,'SERMON AUDIO','Finding a steady rhythm','12 min / Listen','#a98662');row(507-phase*5,'PODCAST','Questions worth asking','Episode 04 / Play','#6e9290');row(591-phase*5,'VIDEO','A story of hope','4 min / Watch','#88765f')}
+  if(scene===2){ui('A story worth',28,155,21,'#263629',600);ui('passing along.',28,180,21,'#66834d',600);feature(205,'TESTIMONY / 4 MIN','A new beginning','#8b785d');ui('SEND THIS RESOURCE',28,412,8,'#788675',600,'DM Mono');['WhatsApp','Messages','Social story'].forEach((v,i)=>{const y=430+i*62,on=i===0&&phase>.36;rounded(screen.x+28,screen.y+y,410,47,10,on?'#e4efda':'#fff',on?'#78945e':'#dce2d7');ui(['W','M','S'][i],42,y+30,12,'#607454',700);ui(v,74,y+30,11,'#344435',600);if(on)ui('✓',407,y+30,12,'#52764a',700)})}
+  if(scene===3){ui('Family & faith',28,155,22,'#263629',600);ui('A small group nearby',28,181,11,'#70806a');card(28,205,410,120,11,'#e4ebdc');ui('G',54,255,17,'#607d50',700);ui('WEEKLY DISCUSSION',102,239,7,'#718267',500,'DM Mono');ui('Faith in everyday life',102,261,11,'#324231',600);bubble(36,348,'What has helped this week?','#fff');bubble(90,414-phase*9,'A quiet moment and a good question.','#e4efdb');bubble(36,476-phase*9,'That is a lovely place to start.','#fff');rounded(screen.x+28,screen.y+565,410,48,24,'#5e7f48');ui('Explore this group',148,595,11,'#fff',600)}
+  if(scene===4){ui('A local welcome',28,155,21,'#263629',600);ui('when you are ready.',28,181,11,'#71816c');miniMap(205,390,200,phase);ui('NEARBY PARTNER',28,423,7,'#75816f',500,'DM Mono');card(28,434,410,67,9,'#fff');ui('Family & faith community',43,461,10,'#344634',600);ui('2.4 km / English / Weekly group',43,482,7,'#748070');card(28,510,410,145,9,'#e6f0e1');ui('WHATSAPP DRAFT / OPT-IN',43,533,7,'#617952',600,'DM Mono');ui('Hi there,',43,559,10,'#344634');ui('thanks for reaching out.',43,580,10,'#344634');ui(phase>.45?'Would directions or group details help?':'Would directions or group details...',43,602,9,'#344634');ui('Partner review before sending.',43,635,7,'#617952')}
+  const navY=screen.y+screen.h-54;ctx.fillStyle='#fff';ctx.fillRect(screen.x,navY-9,screen.w,63);rule(screen.x+20,navY-9,screen.x+screen.w-20,navY-9,'#e2e7dd');['HOME','EXPLORE','GROUPS','PROFILE'].forEach((v,i)=>{const x=screen.x+41+i*97;ctx.beginPath();ctx.arc(x+10,navY+12,5,0,Math.PI*2);ctx.fillStyle=i===0?'#65834f':'#adb9a8';ctx.fill();text(v,x-5,navY+30,5,i===0?'#577447':'#929c8d',500,'DM Mono')});ctx.restore()
+}
+function bubble(x,y,value,fill){card(x,y,410-x,41,9,fill);ui(value,x+10,y+25,8,'#405040')}
+function miniMap(y,h,p){const x=screen.x+28,t=screen.y+y,w=410;card(28,y,w,h,11,'#e2e9d9');ctx.save();ctx.beginPath();ctx.roundRect(x,t,w,h,11);ctx.clip();ctx.strokeStyle='#fafaf2';ctx.lineWidth=6;for(let i=0;i<5;i++){ctx.beginPath();ctx.moveTo(x-35+i*85,t);ctx.lineTo(x+40+i*78,t+h);ctx.stroke()}ctx.strokeStyle='#c6d6be';ctx.lineWidth=10;ctx.beginPath();ctx.moveTo(x+5,t+h*.74);ctx.bezierCurveTo(x+115,t+35,x+180,t+h-10,x+w-10,t+48);ctx.stroke();[[x+110,t+72],[x+w-90,t+52],[x+w-82,t+h-48]].forEach((q,i)=>{ctx.beginPath();ctx.arc(q[0],q[1],12,0,Math.PI*2);ctx.fillStyle=i===1&&p>.5?'#d0f063':'#fff';ctx.fill();ctx.strokeStyle='#607e47';ctx.lineWidth=2;ctx.stroke()});ctx.restore()}
+function palm(){const g=ctx.createLinearGradient(1230,460,1590,890);g.addColorStop(0,'#e5b492');g.addColorStop(.5,'#bd805f');g.addColorStop(1,'#8f5947');ctx.save();ctx.shadowColor='#0008';ctx.shadowBlur=22;ctx.shadowOffsetX=12;ctx.shadowOffsetY=18;ctx.fillStyle=g;ctx.beginPath();ctx.moveTo(1260,470);ctx.bezierCurveTo(1240,330,1300,285,1370,270);ctx.bezierCurveTo(1450,255,1515,330,1540,420);ctx.bezierCurveTo(1600,550,1620,690,1580,830);ctx.bezierCurveTo(1535,940,1415,970,1335,910);ctx.bezierCurveTo(1275,855,1240,690,1235,565);ctx.closePath();ctx.fill();ctx.restore()}
+function thumb(scene,p){const x=[1210,1220,1198,1200,1210][scene]+(scene===1?Math.sin(p*Math.PI*2)*8:0),y=scene===1?685-p*225:[500,470,580,645,615][scene],g=ctx.createLinearGradient(x-45,y-20,x+125,y+120);g.addColorStop(0,'#e8b896');g.addColorStop(.6,'#c28766');g.addColorStop(1,'#a66e57');ctx.save();ctx.shadowColor='#2c1a1366';ctx.shadowBlur=14;ctx.fillStyle=g;ctx.beginPath();ctx.moveTo(x+230,y+135);ctx.bezierCurveTo(x+160,y+100,x+85,y+48,x+34,y+12);ctx.bezierCurveTo(x-10,y-18,x-48,y-20,x-62,y+10);ctx.bezierCurveTo(x-76,y+45,x-40,y+94,x+12,y+136);ctx.bezierCurveTo(x+74,y+184,x+175,y+188,x+230,y+155);ctx.closePath();ctx.fill();ctx.restore();const r=(p*3)%1;ctx.beginPath();ctx.arc(x,y,9+r*15,0,Math.PI*2);ctx.strokeStyle=`rgba(208,240,99,${.8*(1-r)})`;ctx.lineWidth=3;ctx.stroke()}
+function frame(now){const elapsed=Math.min(DURATION-1,Math.max(0,now-start)),scene=Math.min(4,Math.floor(elapsed/STEP)),phase=(elapsed-scene*STEP)/STEP;drawBackdrop(scene,phase,elapsed);palm();drawPhone(phase);drawScreen(scene,phase);thumb(scene,phase)}
+function animate(now){frame(now);requestAnimationFrame(animate)}requestAnimationFrame(animate)
+replayButton.addEventListener('click',()=>{if(!recording){started=performance.now();status.textContent='Preview replaying · 9 seconds'}})
+renderButton.addEventListener('click',async()=>{if(recording)return;const mime=['video/webm;codecs=vp9','video/webm;codecs=vp8','video/webm'].find(v=>MediaRecorder.isTypeSupported(v));if(!mime||!canvas.captureStream){status.textContent='This browser cannot render WebM. Try current Chrome or Edge.';return}await document.fonts.ready;try{const stream=canvas.captureStream(30);recorder=new MediaRecorder(stream,{mimeType:mime,videoBitsPerSecond:9000000});chunks=[];recorder.ondataavailable=e=>{if(e.data.size)chunks.push(e.data)};recorder.onstop=()=>{const blob=new Blob(chunks,{type:mime}),url=URL.createObjectURL(blob);if(lastUrl)URL.revokeObjectURL(lastUrl);lastUrl=url;download.href=url;download.hidden=false;stream.getTracks().forEach(t=>t.stop());recording=false;renderButton.disabled=false;renderButton.textContent='Render HD WebM';progress.style.width='0%';status.textContent=`HD video ready · ${(blob.size/1000000).toFixed(1)} MB · click Download video to save`};recording=true;renderButton.disabled=true;renderButton.textContent='Rendering HD...';started=performance.now();status.textContent='Recording the 9-second journey at 30 fps...';recorder.start(250);const t=performance.now(),tick=()=>{if(!recording)return;const n=Math.min(100,(performance.now()-t)/DURATION*100);progress.style.width=`${n}%`;if(n>=100)recorder.stop();else requestAnimationFrame(tick)};requestAnimationFrame(tick)}catch(e){recording=false;renderButton.disabled=false;renderButton.textContent='Render HD WebM';status.textContent=`Could not start recording: ${e.message||'unknown error'}`}})

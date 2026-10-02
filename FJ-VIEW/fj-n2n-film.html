@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#101711" />
+    <meta name="description" content="A handheld HD walkthrough of the FJ-N2N product journey." />
+    <title>FJ-N2N | Product Journey Film</title>
+  </head>
+  <body>
+    <div class="film-app">
+      <header class="film-header">
+        <a href="./" class="film-brand"><span>N</span><b>FJ-N2N</b><i></i><small>PRODUCT JOURNEY FILM</small></a>
+        <div class="film-spec"><span class="live-dot"></span> 1080P HD <i></i> 16:9 <i></i> 9 SEC</div>
+      </header>
+      <main class="film-main">
+        <div class="film-intro"><span>CHRISTIAN VISION  /  PRODUCT WALKTHROUGH</span><h1>From first interest<br/>to <em>local welcome.</em></h1><p>A short journey through personalization, sharing, community, and a consent-led church introduction.</p></div>
+        <section class="film-player" aria-label="FJ-N2N cinematic video preview">
+          <div class="player-meta"><span><i></i> PREVIEW</span><span>1920 x 1080  /  30 FPS</span></div>
+          <canvas id="journey-film" width="1920" height="1080" aria-label="Animated nine-second FJ-N2N user journey on an iPhone"></canvas>
+          <div class="film-progress-track"><span id="film-progress"></span></div>
+        </section>
+        <div class="film-actions"><div class="action-copy"><strong>Ready for the journey?</strong><small id="film-status" aria-live="polite">Preview loops automatically. Render a 1080p HD video.</small></div><div class="action-buttons"><button id="replay-film" class="replay-button" type="button"><span aria-hidden="true">↻</span> Replay</button><button id="render-film" class="render-button" type="button"><span aria-hidden="true">↓</span> Render HD WebM</button><a id="download-film" class="download-button" hidden download="FJ-N2N-HD-journey.webm"><span aria-hidden="true">↓</span> Download video</a></div></div>
+        <div class="scene-rail" aria-label="Video scenes"><span><b>01</b> Meet</span><i></i><span><b>02</b> Personalize</span><i></i><span><b>03</b> Share</span><i></i><span><b>04</b> Community</span><i></i><span><b>05</b> Local welcome</span></div>
+      </main>
+      <footer class="film-footer"><span>Faith Journey NetToNeighbor (FJ-N2N)</span><span>Every touchpoint, a path to human connection.</span></footer>
+    </div>
+    <script type="module" src="/src/phone-story-1080.js"></script>
+  </body>
+</html>
